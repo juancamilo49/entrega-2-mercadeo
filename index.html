@@ -205,6 +205,102 @@ body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);
 /* Colored header strip */
 .strip{position:absolute;top:0;left:0;right:0;height:5px;}
 .strip.sg{background:linear-gradient(90deg,var(--green),var(--green-bright));}.strip.se{background:linear-gradient(90deg,var(--ember),var(--ember-light));}
+
+/* ═══════════════════════════════════════════════════════
+   LAPTOP / MEDIUM-HEIGHT SCREENS  (900 px ↓)
+   Targets: 1280×800, 1366×768, 1440×900, 13-15" laptops
+   ═══════════════════════════════════════════════════════ */
+@media (min-width:801px) and (max-height:900px){
+  /* Slide container */
+  .s{padding:32px 62px 40px;}
+  .ft{bottom:10px;left:62px;right:62px;font-size:11px;}
+
+  /* Labels & titles */
+  .lbl{font-size:11px;letter-spacing:3px;margin-bottom:8px;}
+  /* !important overrides inline font-size on .tt */
+  .tt{font-size:clamp(1.4rem,2.6vw,2.1rem)!important;margin-bottom:10px;}
+  .sub{font-size:clamp(0.88rem,1.3vw,1rem);}
+
+  /* Cards */
+  .card{padding:14px 16px;}
+  .card-icon{font-size:24px;margin-bottom:8px;}
+  .card h4{font-size:15px;margin-bottom:4px;}
+  .card p{font-size:13px;line-height:1.5;}
+
+  /* Statement blocks */
+  .stmt{font-size:clamp(0.9rem,1.4vw,1.05rem);padding:16px 20px;}
+  .stmt-alt{padding:14px 18px;}
+  .stmt-alt .tag{font-size:10px;margin-bottom:5px;}
+  .stmt-alt p{font-size:13px;line-height:1.55;}
+
+  /* Idea box */
+  .idea{padding:26px 30px;max-width:680px;}
+  .idea .qt{font-size:clamp(1rem,2vw,1.45rem)!important;margin-bottom:10px;}
+  .idea .ex{font-size:13px;line-height:1.6;}
+
+  /* Archetypes */
+  .arch{padding:16px 14px;}
+  .arch-em{font-size:26px;margin-bottom:6px;}
+  .arch-nm{font-size:17px;margin-bottom:5px;}
+  .arch-ds{font-size:13px;line-height:1.5;}
+  .arch .at{font-size:11px;padding:3px 9px;}
+  .arch-tags{gap:4px;margin-top:8px;}
+
+  /* VM (Vision/Mission) */
+  .vm{padding:18px 20px;}
+  .vm h3{font-size:11px;margin-bottom:7px;}
+  .vm p{font-size:14px;line-height:1.6;}
+
+  /* Bullets */
+  .bi{font-size:13px;padding:5px 0;line-height:1.55;}
+
+  /* Chips */
+  .chip{font-size:12px;padding:6px 11px;margin:2px;}
+
+  /* Grids & flex */
+  .g2{gap:12px;}.g3{gap:10px;}.g4{gap:9px;}
+  .fc{gap:10px;}.fc>.card{min-width:180px;}
+
+  /* Seg boxes */
+  .seg{padding:10px 12px;}
+  .seg h5{font-size:10px;margin-bottom:4px;}
+  .seg p{font-size:12px;}
+
+  /* Cover */
+  .cv-logo{font-size:clamp(2.2rem,5vw,3.8rem)!important;}
+  .cv-sl{font-size:12px;letter-spacing:3px;margin:5px 0 18px;}
+  .cv-sub{font-size:clamp(1rem,1.8vw,1.4rem);margin-bottom:20px;}
+  .cv-team span{font-size:13px;}
+  .cv-pill{margin-bottom:14px;}
+
+  /* Decorative number */
+  .divn{font-size:clamp(4rem,11vw,8rem);}
+
+  /* Aliados */
+  .ali h5{font-size:14px;}.ali p{font-size:12.5px;}
+}
+
+/* ══════════════════════════════════════════════════════
+   SHORT LAPTOPS  (≤768 px height — e.g. 1366×768)
+   Additional reductions on top of the block above
+   ══════════════════════════════════════════════════════ */
+@media (min-width:801px) and (max-height:768px){
+  .s{padding:24px 56px 34px;}
+  .ft{bottom:7px;left:56px;right:56px;}
+  .lbl{margin-bottom:5px;}
+  .tt{font-size:clamp(1.25rem,2.2vw,1.75rem)!important;margin-bottom:8px;}
+  .sub{font-size:clamp(0.82rem,1.2vw,0.94rem);}
+  .card p{font-size:12.5px;}
+  .vm p{font-size:13px;line-height:1.5;}
+  .bi{font-size:12.5px;padding:4px 0;}
+  .idea{padding:20px 24px;}
+  .idea .qt{font-size:clamp(0.95rem,1.8vw,1.3rem)!important;}
+  .idea .ex{font-size:12.5px;}
+  .arch-ds{font-size:12px;}
+  .stmt{padding:13px 17px;}
+  .stmt-alt p{font-size:12px;}
+  .g2{gap:10px;}.g3{gap:9px;}.g4{gap:8px;}
+}
 </style>
 </head>
 <body>
