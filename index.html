@@ -3,524 +3,402 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entrega 2 — I-HOMOTIC | Plataforma de Marca y Modelo de Negocio</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<title>Entrega 2 — I-HOMOTIC</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --forest: #1B2A1B;
-  --green: #2D6A2E;
-  --green-mid: #3E8B40;
-  --green-light: #4CAF50;
-  --green-wash: #E8F5E9;
-  --ember: #E8721A;
-  --ember-light: #FFAB40;
-  --ember-wash: #FFF3E0;
-  --cream: #FAFDF8;
-  --sand: #F1F4EE;
-  --bark: #212121;
-  --stone: #424242;
-  --fog: #757575;
-  --mist: #BDBDBD;
-  --cloud: #E8E8E8;
-  --white: #FFFFFF;
+:root{
+  --forest:#1B2A1B;--green:#2D6A2E;--green-bright:#43A047;--green-light:#66BB6A;
+  --green-wash:#E8F5E9;--ember:#E8721A;--ember-dark:#C75B0A;--ember-light:#FFB74D;
+  --ember-wash:#FFF3E0;--cream:#FAF9F6;--bark:#1A1A1A;--stone:#333;--fog:#666;
+  --cloud:#E0E0E0;--white:#FFFFFF;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
-body { font-family: 'DM Sans', sans-serif; background: var(--forest); color: var(--bark); overflow-x: hidden; }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory;}
+body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);overflow-x:hidden;}
 
 /* ═══ SLIDES ═══ */
-.slide {
-  min-height: 100vh;
-  scroll-snap-align: start;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 52px 72px;
-  overflow: hidden;
-}
-@media (max-width: 800px) { .slide { padding: 32px 20px; } }
+.s{min-height:100vh;scroll-snap-align:start;position:relative;display:flex;flex-direction:column;justify-content:center;padding:48px 64px;overflow:hidden;}
+@media(max-width:800px){.s{padding:28px 18px;}}
 
-/* ═══ NAV DOTS ═══ */
-.nav { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 300; }
-.dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.15); border: 1.5px solid rgba(255,255,255,.25); cursor: pointer; transition: all .3s; }
-.dot:hover, .dot.on { background: var(--green-light); border-color: var(--green-light); box-shadow: 0 0 8px rgba(76,175,80,.45); transform: scale(1.4); }
+/* Nav */
+.nav{position:fixed;right:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:7px;z-index:300;}
+.dt{width:8px;height:8px;border-radius:50%;cursor:pointer;transition:all .3s;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);}
+.dt:hover,.dt.on{background:var(--green-light);border-color:var(--green-light);box-shadow:0 0 8px rgba(102,187,106,.5);transform:scale(1.4);}
 
-/* Light slides get dark dots */
-.slide.light ~ .nav .dot { background: rgba(0,0,0,.08); border-color: rgba(0,0,0,.15); }
+/* Themes */
+.s.dk{background:var(--bark);color:var(--white);}
+.s.lt{background:var(--cream);color:var(--bark);}
+.s.gr{background:var(--green);color:var(--white);}
+.s.em{background:var(--ember);color:var(--white);}
 
-/* ═══ BACKGROUNDS ═══ */
-.bg-leaf {
-  position: absolute; inset: 0; pointer-events: none; opacity: .035;
-  background-image: radial-gradient(circle at 20% 80%, var(--green-light) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, var(--ember) 0%, transparent 50%);
-}
-.bg-dots {
-  position: absolute; inset: 0; pointer-events: none; opacity: .04;
-  background-image: radial-gradient(circle, var(--green) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-.glow {
-  position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none;
-}
+/* BG */
+.bg-p{position:absolute;inset:0;pointer-events:none;opacity:.04;background-image:radial-gradient(circle,currentColor 1px,transparent 1px);background-size:28px 28px;}
+.glow{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
 
-/* ═══ DARK SLIDES (forest bg) ═══ */
-.slide.dark { background: var(--forest); color: var(--cream); }
-.slide.dark .sub { color: rgba(255,255,255,.55); }
+/* Typography — LARGE for projection */
+.lbl{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.s.dk .lbl{color:var(--green-light);}.s.lt .lbl{color:var(--green);}.s.gr .lbl,.s.em .lbl{color:rgba(255,255,255,.6);}
+.lbl .pip{width:6px;height:6px;border-radius:50%;background:var(--ember);}
+.s.em .lbl .pip{background:var(--white);}
 
-/* ═══ LIGHT SLIDES (cream/sand bg) ═══ */
-.slide.light { background: var(--cream); color: var(--bark); }
-.slide.light .sub { color: var(--fog); }
+.tt{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:16px;}
+.tt em{font-style:italic;font-weight:400;}
+.s.dk .tt .hi{color:var(--green-light);}.s.lt .tt .hi{color:var(--green);}
+.s.dk .tt .hi2{color:var(--ember-light);}.s.lt .tt .hi2{color:var(--ember);}
+.s.gr .tt .hi{color:var(--ember-light);}.s.em .tt .hi{color:var(--white);}
 
-/* ═══ TYPOGRAPHY ═══ */
-.label {
-  font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
-  margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px;
-}
-.slide.dark .label { color: var(--green-light); }
-.slide.light .label { color: var(--green); }
-.label .pip { width: 6px; height: 6px; border-radius: 50%; background: var(--ember); }
+.sub{font-size:clamp(1rem,1.6vw,1.15rem);font-weight:400;line-height:1.7;max-width:640px;}
+.s.dk .sub{color:rgba(255,255,255,.55);}.s.lt .sub{color:var(--fog);}
+.s.gr .sub,.s.em .sub{color:rgba(255,255,255,.7);}
 
-.title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.12; margin-bottom: 16px;
-}
-.title em { font-style: italic; font-weight: 400; }
-.slide.dark .title .hi { color: var(--green-light); }
-.slide.light .title .hi { color: var(--green); }
-.slide.dark .title .hi2 { color: var(--ember-light); }
-.slide.light .title .hi2 { color: var(--ember); }
+/* ═══ CARDS — colored panels ═══ */
+.card{border-radius:14px;padding:24px;transition:all .25s;}
+.card.c-white{background:var(--white);color:var(--bark);border:1px solid var(--cloud);}
+.card.c-white:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-2px);}
+.card.c-white p{color:var(--fog);}
+.card.c-dark{background:rgba(0,0,0,.25);color:var(--white);border:1px solid rgba(255,255,255,.08);}
+.card.c-dark p{color:rgba(255,255,255,.6);}
+.card.c-green{background:var(--green);color:var(--white);}
+.card.c-green p{color:rgba(255,255,255,.75);}
+.card.c-ember{background:var(--ember);color:var(--white);}
+.card.c-ember p{color:rgba(255,255,255,.75);}
+.card.c-green-wash{background:var(--green-wash);color:var(--bark);border:1px solid #C8DACE;}
+.card.c-green-wash p{color:var(--fog);}
+.card.c-ember-wash{background:var(--ember-wash);color:var(--bark);border:1px solid #FFD5A0;}
+.card.c-ember-wash p{color:var(--fog);}
 
-.sub { font-size: clamp(.88rem, 1.5vw, 1.05rem); font-weight: 300; line-height: 1.7; max-width: 640px; }
+.card-icon{font-size:28px;margin-bottom:12px;}
+.card h4{font-size:16px;font-weight:700;margin-bottom:6px;}
+.card p{font-size:14px;line-height:1.65;}
 
-/* ═══ CARDS ═══ */
-.card {
-  border-radius: 14px; padding: 22px; transition: all .28s;
-}
-.slide.dark .card {
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-}
-.slide.dark .card:hover {
-  background: rgba(255,255,255,.07); border-color: rgba(76,175,80,.25); transform: translateY(-2px);
-  box-shadow: 0 10px 32px rgba(0,0,0,.3);
-}
-.slide.light .card {
-  background: var(--white); border: 1px solid var(--cloud); box-shadow: 0 2px 12px rgba(0,0,0,.04);
-}
-.slide.light .card:hover {
-  border-color: #C8DACE; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.07);
-}
+/* Grids */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+.fc{display:flex;gap:16px;flex-wrap:wrap;}.fc>.card{flex:1;min-width:220px;}
 
-.card-icon {
-  width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center;
-  justify-content: center; font-size: 18px; margin-bottom: 12px;
-}
-.ic-g { background: var(--green-wash); }
-.ic-e { background: var(--ember-wash); }
+/* Statement */
+.stmt{font-size:clamp(1.05rem,2vw,1.3rem);font-weight:400;line-height:1.75;max-width:780px;padding:24px 28px;border-radius:14px;}
+.stmt.st-green{background:var(--green);color:var(--white);border-left:5px solid var(--ember);}
+.stmt strong{font-weight:700;}
+.stmt.st-green strong{color:var(--ember-light);}
 
-.card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-.card p { font-size: 12.5px; line-height: 1.6; }
-.slide.dark .card p { color: rgba(255,255,255,.5); }
-.slide.light .card p { color: var(--fog); }
+.stmt-alt{border-radius:14px;padding:22px 26px;margin-top:18px;max-width:780px;}
+.stmt-alt.sa-ember{background:var(--ember);color:var(--white);}
+.stmt-alt .tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;color:rgba(255,255,255,.6);}
+.stmt-alt strong{color:var(--ember-light);}
+.stmt-alt.sa-ember strong{color:var(--white);text-decoration:underline;text-decoration-color:rgba(255,255,255,.3);text-underline-offset:3px;}
+.stmt-alt p{font-size:15px;line-height:1.7;}
 
-/* ═══ GRIDS ═══ */
-.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
-@media (max-width: 860px) { .g2,.g3,.g4 { grid-template-columns: 1fr; } }
+/* Idea box */
+.idea{border-radius:18px;padding:44px;max-width:740px;text-align:center;background:var(--green);color:var(--white);}
+.idea .qt{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.6vw,1.8rem);font-weight:700;line-height:1.35;margin-bottom:14px;}
+.idea .qt .hi{color:var(--ember-light);}
+.idea .ex{font-size:14.5px;line-height:1.7;max-width:560px;margin:0 auto;color:rgba(255,255,255,.7);}
 
-/* ═══ STATEMENT BOX ═══ */
-.stmt {
-  font-size: clamp(.95rem, 1.8vw, 1.2rem); font-weight: 400; line-height: 1.75;
-  max-width: 780px; padding: 24px 28px; border-radius: 0 12px 12px 0;
-}
-.slide.dark .stmt { border-left: 3px solid var(--green-light); background: rgba(76,175,80,.06); color: rgba(255,255,255,.8); }
-.slide.light .stmt { border-left: 3px solid var(--green); background: var(--green-wash); color: var(--stone); }
-.stmt strong { font-weight: 600; }
-.slide.dark .stmt strong { color: var(--green-light); }
-.slide.light .stmt strong { color: var(--green); }
+/* Archetypes */
+.arch{border-radius:14px;padding:28px;text-align:center;transition:all .25s;position:relative;}
+.arch .arch-tags{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:12px;}
+.arch .at{font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.15);color:rgba(255,255,255,.85);}
+.arch.a-green{background:var(--green);color:var(--white);}
+.arch.a-green-bright{background:var(--green-bright);color:var(--white);}
+.arch.a-ember{background:var(--ember);color:var(--white);}
+.arch.a-green::before{content:'★ PREDOMINANTE';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--ember);color:white;font-size:9px;font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:7px;}
+.arch-em{font-size:36px;margin-bottom:10px;}
+.arch-nm{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px;}
+.arch-ds{font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.75);}
 
-.stmt-alt {
-  border-radius: 12px; padding: 20px 24px; margin-top: 18px; max-width: 780px;
-}
-.slide.dark .stmt-alt { background: rgba(232,114,26,.06); border: 1px solid rgba(232,114,26,.15); color: rgba(255,255,255,.75); }
-.slide.light .stmt-alt { background: var(--ember-wash); border: 1px solid #FFD5A0; color: var(--stone); }
-.stmt-alt .tag { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ember); margin-bottom: 7px; }
-.stmt-alt strong { color: var(--ember-light); }
-.slide.light .stmt-alt strong { color: var(--ember); }
+/* Chips */
+.chip{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;margin:3px;}
+.chip.cg{background:var(--green);color:var(--white);}
+.chip.ce{background:var(--ember);color:var(--white);}
+.chip.cg-o{background:var(--green-wash);color:var(--green);border:1px solid #C8DACE;}
+.chip.ce-o{background:var(--ember-wash);color:var(--ember);border:1px solid #FFD5A0;}
 
-/* ═══ IDEA BOX ═══ */
-.idea {
-  border-radius: 18px; padding: 40px; max-width: 720px; text-align: center;
-}
-.slide.dark .idea { background: rgba(76,175,80,.05); border: 1px solid rgba(76,175,80,.12); }
-.slide.light .idea { background: var(--green-wash); border: 1px solid #C8DACE; }
-.idea .qt {
-  font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.4vw, 1.65rem);
-  font-weight: 700; line-height: 1.35; margin-bottom: 14px;
-}
-.idea .qt .hi { color: var(--green); }
-.slide.dark .idea .qt .hi { color: var(--green-light); }
-.idea .ex { font-size: 13.5px; line-height: 1.7; max-width: 540px; margin: 0 auto; }
-.slide.dark .idea .ex { color: rgba(255,255,255,.5); }
-.slide.light .idea .ex { color: var(--fog); }
+/* VM blocks */
+.vm{border-radius:14px;padding:28px;}
+.vm.v-green{background:var(--green);color:var(--white);}
+.vm.v-ember{background:var(--ember);color:var(--white);}
+.vm h3{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;color:rgba(255,255,255,.5);}
+.vm p{font-size:15px;line-height:1.75;color:rgba(255,255,255,.85);}
 
-/* ═══ ARCHETYPE CARDS ═══ */
-.arch { border-radius: 14px; padding: 26px; text-align: center; transition: all .28s; }
-.slide.light .arch { background: var(--white); border: 1px solid var(--cloud); }
-.slide.light .arch:hover { box-shadow: 0 6px 20px rgba(0,0,0,.06); }
-.slide.light .arch.pri { background: var(--green-wash); border-color: #A5D6A7; position: relative; }
-.slide.light .arch.pri::before {
-  content: 'PREDOMINANTE'; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-  background: var(--green); color: white; font-size: 8.5px; font-weight: 700;
-  letter-spacing: 1.5px; padding: 3px 10px; border-radius: 6px;
-}
-.arch-em { font-size: 32px; margin-bottom: 10px; }
-.arch-nm { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-.arch-ds { font-size: 12px; color: var(--fog); line-height: 1.6; }
+/* Bullet items */
+.bi{display:flex;align-items:baseline;gap:10px;padding:8px 0;font-size:14px;line-height:1.6;}
+.bi+.bi{border-top:1px solid rgba(255,255,255,.08);}
+.bi .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.bi .dot.dg{background:var(--green-light);}.bi .dot.de{background:var(--ember-light);}
+.bi strong{font-weight:700;}
 
-/* ═══ CHIPS ═══ */
-.chip {
-  display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px;
-  border-radius: 8px; font-size: 12px; font-weight: 500; margin: 2px;
-}
-.chip.g { background: var(--green-wash); color: var(--green); border: 1px solid #C8DACE; }
-.chip.e { background: var(--ember-wash); color: var(--ember); border: 1px solid #FFD5A0; }
+/* Aliados */
+.ali{border-radius:12px;padding:16px;display:flex;align-items:flex-start;gap:12px;transition:all .25s;}
+.ali.al-w{background:var(--white);color:var(--bark);border:1px solid var(--cloud);}
+.ali.al-w:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);}
+.ali-ic{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.ali h5{font-size:14px;font-weight:700;margin-bottom:2px;}.ali p{font-size:12px;color:var(--fog);line-height:1.55;}
 
-/* ═══ VM BLOCKS ═══ */
-.vm { border-radius: 14px; padding: 26px; }
-.slide.light .vm { background: var(--white); border: 1px solid var(--cloud); }
-.slide.light .vm.vis { border-top: 3px solid var(--green); }
-.slide.light .vm.mis { border-top: 3px solid var(--ember); }
-.vm h3 { font-size: 10.5px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; margin-bottom: 10px; }
-.vm.vis h3 { color: var(--green); } .vm.mis h3 { color: var(--ember); }
-.vm p { font-size: 13.5px; line-height: 1.72; color: var(--stone); }
+/* Seg */
+.seg{border-radius:12px;padding:16px;}
+.seg.sg-dk{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);}
+.seg h5{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;color:var(--green-light);}
+.seg p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.5);}
 
-/* ═══ BULLET ITEMS ═══ */
-.bi { position: relative; padding: 7px 0 7px 16px; font-size: 13px; line-height: 1.6; color: var(--stone); }
-.bi + .bi { border-top: 1px solid rgba(0,0,0,.04); }
-.bi::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 5px; height: 5px; border-radius: 50%; }
-.bi.bg::before { background: var(--green); opacity: .45; }
-.bi.be::before { background: var(--ember); opacity: .45; }
-.bi strong { font-weight: 600; }
+/* Footer */
+.ft{position:absolute;bottom:14px;left:64px;right:64px;display:flex;justify-content:space-between;font-size:10px;font-weight:500;letter-spacing:.5px;}
+.s.dk .ft,.s.gr .ft,.s.em .ft{color:rgba(255,255,255,.15);}.s.lt .ft{color:var(--cloud);}
+@media(max-width:800px){.ft{left:18px;right:18px;}}
 
-/* ═══ ALIADO ═══ */
-.ali { border-radius: 10px; padding: 14px; display: flex; align-items: flex-start; gap: 10px; transition: all .25s; }
-.slide.light .ali { background: var(--white); border: 1px solid var(--cloud); }
-.slide.light .ali:hover { border-color: #C8DACE; box-shadow: 0 4px 14px rgba(0,0,0,.05); }
-.ali-ic { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-.ali h5 { font-size: 12.5px; font-weight: 600; margin-bottom: 1px; }
-.ali p { font-size: 11px; color: var(--fog); line-height: 1.5; }
+/* Animations */
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.an{opacity:0;animation:rise .5s ease forwards;animation-play-state:paused;}
+.d1{animation-delay:.06s}.d2{animation-delay:.12s}.d3{animation-delay:.2s}.d4{animation-delay:.28s}.d5{animation-delay:.36s}
 
-/* ═══ SEG ITEMS ═══ */
-.seg { border-radius: 10px; padding: 14px; }
-.slide.dark .seg { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-top: 2.5px solid var(--green-light); }
-.seg h5 { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; }
-.slide.dark .seg h5 { color: var(--green-light); }
-.seg p { font-size: 11.5px; line-height: 1.55; }
-.slide.dark .seg p { color: rgba(255,255,255,.45); }
+/* Cover */
+.cv-logo{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:700;line-height:1;}
+.cv-logo .ac{color:var(--green-light);}.cv-logo .dash{color:var(--ember);}
+.cv-sl{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--ember-light);margin:6px 0 28px;font-weight:600;}
+.cv-sub{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2.4vw,1.7rem);font-weight:400;color:rgba(255,255,255,.5);font-style:italic;margin-bottom:36px;}
+.cv-team{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+.cv-team span{font-size:13px;color:rgba(255,255,255,.25);}
+.cv-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.2);border-radius:20px;padding:6px 16px;font-size:11px;color:rgba(255,255,255,.45);margin-bottom:24px;}
+.scroll-h{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);opacity:.25;animation:bob 2s infinite;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.scroll-h span{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
+.divn{font-family:'Playfair Display',serif;font-size:clamp(6rem,15vw,11rem);font-weight:700;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;color:rgba(255,255,255,.025);}
 
-/* ═══ SECTION LABEL IN LIGHT CARD ═══ */
-.sec-lbl { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
-.sec-lbl.g { color: var(--green); } .sec-lbl.e { color: var(--ember); }
-
-/* ═══ FOOTER BAR ═══ */
-.ft { position: absolute; bottom: 14px; left: 72px; right: 72px; display: flex; justify-content: space-between; font-size: 9.5px; font-weight: 500; letter-spacing: .5px; }
-.slide.dark .ft { color: rgba(255,255,255,.2); }
-.slide.light .ft { color: var(--mist); }
-@media (max-width: 800px) { .ft { left: 20px; right: 20px; } }
-
-/* ═══ ANIMATIONS ═══ */
-@keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.an { opacity: 0; animation: rise .5s ease forwards; animation-play-state: paused; }
-.d1{animation-delay:.06s}.d2{animation-delay:.12s}.d3{animation-delay:.18s}.d4{animation-delay:.24s}.d5{animation-delay:.3s}.d6{animation-delay:.36s}
-
-/* ═══ COVER SPECIFICS ═══ */
-.cv-tag { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--ember-light); margin-bottom: 8px; }
-.cv-logo { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 700; color: var(--cream); line-height: 1; margin-bottom: 4px; }
-.cv-logo .accent { color: var(--green-light); }
-.cv-slogan { font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.28); margin-bottom: 28px; }
-.cv-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.4vw, 1.7rem); font-weight: 400; color: rgba(255,255,255,.6); font-style: italic; margin-bottom: 36px; }
-.cv-team { display: flex; gap: 20px; flex-wrap: wrap; }
-.cv-team span { font-size: 12px; color: rgba(255,255,255,.3); }
-.cv-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(76,175,80,.1); border: 1px solid rgba(76,175,80,.2); border-radius: 20px; padding: 5px 14px; font-size: 11px; color: rgba(255,255,255,.55); margin-bottom: 24px; }
-.scroll-cue { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; opacity: .3; animation: bob 2s infinite; }
-.scroll-cue span { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.5); }
-@keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(5px); } }
-
-/* Divider slides */
-.div-bg-num { font-family: 'Playfair Display', serif; font-size: clamp(5rem, 14vw, 10rem); font-weight: 700; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
-.slide.dark .div-bg-num { color: rgba(255,255,255,.025); }
-.slide.light .div-bg-num { color: rgba(0,0,0,.03); }
-
-.fc { display: flex; gap: 14px; flex-wrap: wrap; }
-.fc > .card { flex: 1; min-width: 200px; }
+/* Colored header strip */
+.strip{position:absolute;top:0;left:0;right:0;height:5px;}
+.strip.sg{background:linear-gradient(90deg,var(--green),var(--green-bright));}.strip.se{background:linear-gradient(90deg,var(--ember),var(--ember-light));}
 </style>
 </head>
 <body>
-
 <nav class="nav" id="nav"></nav>
 
-<!-- ═══ S0: COVER ═══ -->
-<section class="slide dark" id="s0" style="align-items:center;text-align:center;">
-  <div class="bg-leaf"></div>
-  <div class="glow" style="width:500px;height:500px;top:-220px;left:-150px;background:var(--green-light);opacity:.1;"></div>
-  <div class="glow" style="width:380px;height:380px;bottom:-150px;right:-80px;background:var(--ember);opacity:.08;"></div>
-  <div class="cv-tag an">Entrega 02</div>
-  <div class="cv-logo an d1"><span class="accent">i</span>-Homotic</div>
-  <div class="cv-slogan an d2">sustainable and efficient</div>
-  <div class="cv-pill an d3">🏠 Domótica integral colombiana — bajo GELECT</div>
-  <div class="cv-subtitle an d4">Propuesta de valor y modelo de negocio</div>
-  <div class="cv-team an d5"><span>Mateo Ramírez</span><span>Ioav Mizrachi</span><span>Juan Camilo Bolaños</span></div>
-  <div class="scroll-cue"><span>Scroll</span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+<!-- ═══ COVER ═══ -->
+<section class="s dk" id="s0" style="align-items:center;text-align:center;">
+<div class="bg-p"></div>
+<div class="glow" style="width:500px;height:500px;top:-220px;left:-150px;background:var(--green);opacity:.12;"></div>
+<div class="glow" style="width:400px;height:400px;bottom:-160px;right:-100px;background:var(--ember);opacity:.08;"></div>
+<div style="font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--ember-light);margin-bottom:8px;" class="an">Entrega 02</div>
+<div class="cv-logo an d1"><span class="ac">i</span><span class="dash">-</span>Homotic</div>
+<div class="cv-sl an d2">sustainable & efficient</div>
+<div class="cv-pill an d3">🏠 Domótica integral colombiana — bajo GELECT</div>
+<div class="cv-sub an d4">Propuesta de valor y modelo de negocio</div>
+<div class="cv-team an d5"><span>Mateo Ramírez</span><span>Ioav Mizrachi</span><span>Juan Camilo Bolaños</span></div>
+<div class="scroll-h"><span>Scroll</span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
 </section>
 
-<!-- ═══ S1: PLATAFORMA DIVIDER ═══ -->
-<section class="slide dark" id="s1" style="align-items:center;text-align:center;">
-  <div class="bg-dots"></div>
-  <div class="div-bg-num">01</div>
-  <div class="glow" style="width:400px;height:400px;top:35%;right:-100px;background:var(--green-light);opacity:.08;"></div>
-  <div class="label an"><span class="pip"></span> Punto 1</div>
-  <h2 class="title an d1">Plataforma<br><em>de <span class="hi">marca</span></em></h2>
-  <p class="sub an d2" style="text-align:center;">Los elementos estratégicos que definen quiénes somos, cómo nos diferenciamos y qué promesa le hacemos a los hogares colombianos.</p>
-  <div class="ft"><span>i-Homotic × GELECT</span><span>Mercadeo Digital y Transmedia</span></div>
+<!-- ═══ DIVIDER: PLATAFORMA ═══ -->
+<section class="s dk" id="s1" style="align-items:center;text-align:center;">
+<div class="bg-p"></div><div class="divn">01</div>
+<div class="lbl an"><span class="pip"></span> Punto 1</div>
+<h2 class="tt an d1" style="font-size:clamp(2.2rem,5vw,3.6rem);">Plataforma<br><em>de <span class="hi">marca</span></em></h2>
+<p class="sub an d2" style="text-align:center;">Los elementos estratégicos que definen quiénes somos y qué promesa le hacemos a los hogares colombianos.</p>
+<div class="ft"><span>i-Homotic × GELECT</span><span>Mercadeo Digital y Transmedia</span></div>
 </section>
 
-<!-- ═══ S2: PROPUESTA DE VALOR ═══ -->
-<section class="slide dark" id="s2">
-  <div class="bg-leaf"></div>
-  <div class="label an"><span class="pip"></span> Propuesta de valor</div>
-  <h2 class="title an d1" style="font-size:clamp(1.3rem,2.6vw,1.9rem);">¿Qué le prometemos<br><em>a nuestro <span class="hi">usuario</span>?</em></h2>
-  <div class="stmt an d2">
-    <strong>Simplificar</strong> la automatización del hogar para familias colombianas que quieren vivir más seguras, cómodas y conectadas, <strong>desde soluciones propias, transparentes y sin costos ocultos</strong>, acompañándolas con evidencia real y un proceso claro de principio a fin.
-  </div>
-  <div class="stmt-alt an d3">
-    <div class="tag">Existimos para… por medio de… por el bien de…</div>
-    <p style="font-size:13.5px;line-height:1.7;">Existimos para <strong>hacer accesible y confiable la automatización del hogar en Colombia</strong>, por medio de <strong>soluciones domóticas diseñadas y fabricadas localmente, sin costos recurrentes, con acompañamiento transparente y respaldo de proyectos reales</strong>, por el bien de <strong>las familias colombianas de ingresos medio-altos que buscan un hogar más inteligente, seguro y eficiente, sin depender de proveedores internacionales costosos</strong>.</p>
-  </div>
-  <div class="fc an d4" style="margin-top:18px;">
-    <div class="card"><div class="card-icon ic-g">🔍</div><h4>Problema que resuelve</h4><p>La ausencia de proveedores domóticos confiables y visibles genera desconfianza, parálisis de compra y dependencia de marcas internacionales costosas con mensualidades.</p></div>
-    <div class="card"><div class="card-icon ic-e">💡</div><h4>Necesidad que satisface</h4><p>Un hogar más seguro, cómodo y moderno con tecnología que se entienda, funcione y se implemente paso a paso según el presupuesto familiar.</p></div>
-    <div class="card"><div class="card-icon ic-g">⭐</div><h4>Diferencial</h4><p>Hardware y software 100% colombiano. Cero costos recurrentes. Librería propia para Alexa, Google y Siri sin intermediarios. Precios menores que Crestron o Control4.</p></div>
-  </div>
-  <div class="ft"><span>Plataforma de marca</span><span>02 / 12</span></div>
+<!-- ═══ PROPUESTA DE VALOR ═══ -->
+<section class="s dk" id="s2">
+<div class="strip sg"></div>
+<div class="lbl an"><span class="pip"></span> Propuesta de valor</div>
+<h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">¿Qué le prometemos<br><em>a nuestro <span class="hi">usuario</span>?</em></h2>
+<div class="stmt st-green an d2"><strong>Automatizar hogares colombianos de forma sostenible y eficiente</strong>, con soluciones propias que combinan ahorro energético, seguridad y comodidad — <strong>sin costos recurrentes, sin dependencia de proveedores externos</strong> y con un acompañamiento transparente respaldado por proyectos reales.</div>
+<div class="stmt-alt sa-ember an d3"><div class="tag">Existimos para… por medio de… por el bien de…</div><p>Existimos para <strong>transformar los hogares colombianos en espacios más inteligentes, sostenibles y eficientes</strong>, por medio de <strong>sistemas domóticos fabricados localmente, que operan a bajo voltaje, integran energías alternativas y eliminan costos recurrentes</strong>, por el bien de <strong>las familias de ingresos medio-altos que quieren un hogar más seguro, cómodo y eficiente sin depender de marcas internacionales costosas</strong>.</p></div>
+<div class="fc an d4" style="margin-top:18px;">
+<div class="card c-green-wash"><div class="card-icon">🔍</div><h4>Problema que resuelve</h4><p>Propietarios colombianos enfrentan costos elevados, falta de información clara, desconfianza hacia proveedores sin presencia digital, y soluciones fragmentadas que no integran seguridad, comodidad y eficiencia energética.</p></div>
+<div class="card c-ember-wash"><div class="card-icon">💡</div><h4>Necesidad que satisface</h4><p>Un hogar más seguro, cómodo y eficiente energéticamente, con tecnología que se entienda, funcione y se implemente paso a paso — reduciendo consumo y adaptándose al presupuesto.</p></div>
+<div class="card c-green"><div class="card-icon">⭐</div><h4>Diferencial clave</h4><p>Hardware y software 100% colombiano. Bajo voltaje (12-24V) compatible con solar y eólica. Librería propia para asistentes de voz. Cero costos recurrentes. Sostenible por diseño, eficiente por arquitectura.</p></div>
+</div>
+<div class="ft"><span>Plataforma de marca</span><span>02 / 12</span></div>
 </section>
 
-<!-- ═══ S3: IDEA DE MARCA ═══ -->
-<section class="slide light" id="s3" style="align-items:center;text-align:center;">
-  <div class="bg-dots"></div>
-  <div class="label an"><span class="pip"></span> Idea de marca — ¿Por qué existimos?</div>
-  <div class="idea an d1">
-    <div style="font-size:36px;margin-bottom:14px;">🏠</div>
-    <div class="qt">Hacer de la tecnología en el hogar algo <span class="hi">cercano, confiable y posible</span> para las familias colombianas.</div>
-    <div class="ex">I-HOMOTIC existe para demostrar que la domótica no es un lujo lejano ni una promesa vacía. Le damos al mundo hogares que funcionan mejor, donde la tecnología trabaja para las personas — no al revés. Cada casa inteligente que hacemos realidad prueba que se puede innovar desde Colombia con calidad, transparencia y accesibilidad.</div>
-  </div>
-  <div class="ft"><span>Plataforma de marca</span><span>03 / 12</span></div>
+<!-- ═══ IDEA DE MARCA ═══ -->
+<section class="s dk" id="s3" style="align-items:center;text-align:center;">
+<div class="bg-p"></div>
+<div class="glow" style="width:400px;height:400px;top:20%;left:50%;transform:translateX(-50%);background:var(--green);opacity:.1;"></div>
+<div class="lbl an"><span class="pip"></span> Idea de marca — ¿Por qué existimos?</div>
+<div class="idea an d1">
+<div style="font-size:40px;margin-bottom:14px;">🏠🌱</div>
+<div class="qt">Hacer de la tecnología en el hogar algo <span class="hi">cercano, sostenible y eficiente</span> para las familias colombianas.</div>
+<div class="ex">I-HOMOTIC existe para demostrar que un hogar inteligente puede también consumir menos, proteger más y no generar dependencias costosas. Innovamos desde Colombia con soluciones que cuidan tanto a la familia como al planeta — porque la automatización no tiene que ser un lujo ni un desperdicio, sino una inversión inteligente en confort, seguridad y sostenibilidad.</div>
+</div>
+<div class="ft"><span>Plataforma de marca</span><span>03 / 12</span></div>
 </section>
 
-<!-- ═══ S4: PERSONALIDAD ═══ -->
-<section class="slide light" id="s4">
-  <div class="label an"><span class="pip"></span> Personalidad de marca — Arquetipos de Jung</div>
-  <h2 class="title an d1" style="font-size:clamp(1.3rem,2.4vw,1.85rem);">3 arquetipos que definen<br><em>nuestra <span class="hi">voz</span></em></h2>
-  <div class="g3 an d2">
-    <div class="arch pri">
-      <div class="arch-em">🧠</div>
-      <div class="arch-nm">El Sabio</div>
-      <div class="arch-ds">Educa, informa y guía. Lidera con conocimiento: explica sin tecnicismos, muestra evidencia real y empodera al usuario para decisiones informadas. Responde las dudas que frenan al comprador cauteloso.</div>
-    </div>
-    <div class="arch">
-      <div class="arch-em">🛡️</div>
-      <div class="arch-nm">El Cuidador</div>
-      <div class="arch-ds">Protege y acompaña. La seguridad del hogar y la tranquilidad familiar están en el centro de cada solución. No vendemos tecnología por moda; la ofrecemos porque mejora la vida cotidiana.</div>
-    </div>
-    <div class="arch">
-      <div class="arch-em">🔧</div>
-      <div class="arch-nm">El Creador</div>
-      <div class="arch-ds">Construye desde cero. Diseña su propio hardware, programa su propio software y crea sus propias librerías. Innovación propia colombiana, no reventa de soluciones importadas.</div>
-    </div>
-  </div>
-  <div class="ft"><span>Plataforma de marca</span><span>04 / 12</span></div>
+<!-- ═══ PERSONALIDAD ═══ -->
+<section class="s lt" id="s4">
+<div class="strip sg"></div>
+<div class="lbl an"><span class="pip"></span> Personalidad de marca — Arquetipos de Jung</div>
+<h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">3 arquetipos que definen<br><em>nuestra <span class="hi">voz</span></em></h2>
+<div class="g3 an d2">
+<div class="arch a-green">
+<div class="arch-em">🧠</div><div class="arch-nm">El Sabio</div>
+<div class="arch-ds">Educa, informa y guía con conocimiento. Explica sin tecnicismos, muestra evidencia real y empodera al usuario para decisiones informadas. Responde las dudas que frenan la compra.</div>
+<div class="arch-tags"><span class="at">Racional</span><span class="at">Educativo</span><span class="at">Confiable</span></div>
+</div>
+<div class="arch a-green-bright">
+<div class="arch-em">🛡️</div><div class="arch-nm">El Cuidador</div>
+<div class="arch-ds">Protege y acompaña. La seguridad del hogar, la tranquilidad familiar y el cuidado del entorno están en el centro. No vendemos tecnología por moda; la ofrecemos porque mejora la vida cotidiana.</div>
+<div class="arch-tags"><span class="at">Empático</span><span class="at">Protector</span><span class="at">Cercano</span></div>
+</div>
+<div class="arch a-ember">
+<div class="arch-em">🔧</div><div class="arch-nm">El Creador</div>
+<div class="arch-ds">Construye desde cero. Diseña su propio hardware, programa su propio software y crea sus propias librerías. Innovación colombiana, no reventa de importaciones.</div>
+<div class="arch-tags"><span class="at">Innovador</span><span class="at">Autónomo</span><span class="at">Original</span></div>
+</div>
+</div>
+<div class="ft"><span>Plataforma de marca</span><span>04 / 12</span></div>
 </section>
 
-<!-- ═══ S5: VALORES Y ATRIBUTOS ═══ -->
-<section class="slide light" id="s5">
-  <div class="label an"><span class="pip"></span> Valores y atributos</div>
-  <h2 class="title an d1" style="font-size:clamp(1.3rem,2.4vw,1.85rem);">Lo que sentimos y<br><em>lo que se puede <span class="hi2">medir</span></em></h2>
-  <div class="g2 an d2">
-    <div>
-      <div class="sec-lbl g">Valores (emocionales)</div>
-      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;">
-        <span class="chip g">🤝 Transparencia</span><span class="chip g">🛡️ Seguridad familiar</span>
-        <span class="chip g">💚 Honestidad</span><span class="chip g">🔑 Autonomía tecnológica</span>
-        <span class="chip g">🌱 Compromiso ambiental</span>
-      </div>
-      <p style="font-size:12px;color:var(--fog);line-height:1.6;">Nacen de la investigación con usuarios: confianza, claridad e independencia son las emociones que nuestro segmento más necesita en un proveedor de domótica.</p>
-    </div>
-    <div>
-      <div class="sec-lbl e">Atributos (medibles y objetivos)</div>
-      <div style="display:flex;flex-wrap:wrap;gap:4px;">
-        <span class="chip e">💰 Cero costos recurrentes</span><span class="chip e">🇨🇴 Fabricación 100% nacional</span>
-        <span class="chip e">📉 Precios accesibles vs. competencia</span><span class="chip e">🔌 Cableado UTP bajo voltaje</span>
-        <span class="chip e">🗣️ Librería propia para asistentes</span><span class="chip e">🏠 Showroom con proyectos reales</span>
-      </div>
-    </div>
-  </div>
-  <div class="ft"><span>Plataforma de marca</span><span>05 / 12</span></div>
+<!-- ═══ VALORES Y ATRIBUTOS ═══ -->
+<section class="s dk" id="s5">
+<div class="strip se"></div>
+<div class="lbl an"><span class="pip"></span> Valores y atributos de marca</div>
+<h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">Valores y Atributos<br><em>de <span class="hi2">Marca</span></em></h2>
+<div class="g2 an d2">
+<div class="card c-green" style="padding:28px;">
+<h4 style="font-size:14px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px;">Valores (emocionales)</h4>
+<div class="bi"><span class="dot de"></span><strong>Transparencia</strong> — comunicación clara sobre precios, procesos y alcance</div>
+<div class="bi"><span class="dot de"></span><strong>Seguridad familiar</strong> — cada solución nace de proteger lo que más importa</div>
+<div class="bi"><span class="dot de"></span><strong>Honestidad</strong> — sin letra menuda, sin costos ocultos, sin promesas infladas</div>
+<div class="bi"><span class="dot de"></span><strong>Autonomía tecnológica</strong> — el cliente no depende de nadie más</div>
+<div class="bi"><span class="dot de"></span><strong>Sostenibilidad consciente</strong> — cuidar el hogar y el entorno van de la mano</div>
+</div>
+<div class="card c-ember" style="padding:28px;">
+<h4 style="font-size:14px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px;">Atributos (medibles)</h4>
+<div class="bi"><span class="dot dg"></span><strong>Cero costos recurrentes</strong> — sin mensualidades ni suscripciones</div>
+<div class="bi"><span class="dot dg"></span><strong>Fabricación 100% nacional</strong> — desde circuitos hasta software</div>
+<div class="bi"><span class="dot dg"></span><strong>Bajo voltaje (12-24V)</strong> — compatible con energía solar y eólica</div>
+<div class="bi"><span class="dot dg"></span><strong>Ahorro energético 15-30%</strong> — reducción comprobable del consumo</div>
+<div class="bi"><span class="dot dg"></span><strong>Librería propia</strong> — para asistentes de voz, sin intermediarios</div>
+<div class="bi"><span class="dot dg"></span><strong>Showroom funcional</strong> — con proyectos reales como respaldo</div>
+</div>
+</div>
+<div class="ft"><span>Plataforma de marca</span><span>05 / 12</span></div>
 </section>
 
-<!-- ═══ S6: ACTIVOS ═══ -->
-<section class="slide light" id="s6">
-  <div class="label an"><span class="pip"></span> Activos de marca</div>
-  <h2 class="title an d1" style="font-size:clamp(1.3rem,2.4vw,1.85rem);">Tangibles e intangibles que<br><em>hacen posible la <span class="hi">propuesta</span></em></h2>
-  <div class="g2 an d2">
-    <div>
-      <div class="sec-lbl g">Tangibles</div>
-      <div class="bi bg"><strong>Hardware propio</strong> — circuitos impresos, controladores, sensores</div>
-      <div class="bi bg"><strong>Software y firmware</strong> desarrollado internamente</div>
-      <div class="bi bg"><strong>Librería propia</strong> para Alexa, Google Assistant y Siri</div>
-      <div class="bi bg"><strong>Showroom funcional</strong> en vivienda real</div>
-      <div class="bi bg"><strong>Portafolio</strong> de proyectos residenciales completados</div>
-      <div class="bi bg"><strong>Videos documentales</strong> de instalaciones reales</div>
-      <div class="bi bg"><strong>Hosting y dominio</strong> bajo GELECT (Hostinger + WordPress)</div>
-    </div>
-    <div>
-      <div class="sec-lbl e">Intangibles</div>
-      <div class="bi be"><strong>Credibilidad técnica:</strong> todo diseñado y fabricado en Colombia</div>
-      <div class="bi be"><strong>Independencia tecnológica:</strong> sin dependencia de terceros</div>
-      <div class="bi be"><strong>Know-how acumulado:</strong> años en electrónica y automatización</div>
-      <div class="bi be"><strong>Testimonios reales:</strong> familias que validan el sistema</div>
-      <div class="bi be"><strong>Relación personal:</strong> Carlos acompaña todo el proceso</div>
-      <div class="bi be"><strong>Potencial internacional:</strong> contacto Miami, precios competitivos en USD</div>
-    </div>
-  </div>
-  <div class="ft"><span>Plataforma de marca</span><span>06 / 12</span></div>
+<!-- ═══ ACTIVOS ═══ -->
+<section class="s lt" id="s6">
+<div class="strip sg"></div>
+<div class="lbl an"><span class="pip"></span> Activos de marca</div>
+<h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">Tangibles e intangibles<br><em>que hacen posible la <span class="hi">propuesta</span></em></h2>
+<div class="g2 an d2">
+<div class="card c-green-wash" style="padding:28px;">
+<h4 style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:14px;">Tangibles</h4>
+<p style="color:var(--stone);font-size:14px;line-height:1.8;">Hardware propio (circuitos, controladores, sensores de bajo voltaje) · Software y firmware interno · Librería propia para Alexa, Google y Siri · Showroom funcional en vivienda real · Portafolio de proyectos completados · Videos documentales de instalaciones · Compatibilidad con paneles solares y eólicos</p>
+</div>
+<div class="card c-ember-wash" style="padding:28px;">
+<h4 style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--ember);margin-bottom:14px;">Intangibles</h4>
+<p style="color:var(--stone);font-size:14px;line-height:1.8;">Credibilidad técnica (todo hecho en Colombia) · Independencia tecnológica (si cerramos, los equipos siguen) · Know-how en electrónica y eficiencia energética · Testimonios de familias reales · Relación personal de Carlos con cada cliente · Potencial internacional (contacto activo en Miami, precios competitivos en USD)</p>
+</div>
+</div>
+<div class="ft"><span>Plataforma de marca</span><span>06 / 12</span></div>
 </section>
 
-<!-- ═══ S7: VISIÓN Y MISIÓN ═══ -->
-<section class="slide light" id="s7">
-  <div class="bg-dots"></div>
-  <div class="glow" style="width:350px;height:350px;bottom:-80px;left:-60px;background:var(--green-light);opacity:.06;"></div>
-  <div class="label an"><span class="pip"></span> Visión y misión</div>
-  <h2 class="title an d1" style="font-size:clamp(1.3rem,2.4vw,1.85rem);">A dónde vamos y<br><em>cómo <span class="hi2">llegaremos</span></em></h2>
-  <div class="g2 an d2">
-    <div class="vm vis">
-      <h3>Visión — El futuro que queremos construir</h3>
-      <p>Transformar la manera en que las familias colombianas viven en sus hogares, a través de tecnología accesible y confiable, con el fin de que cada hogar pueda ser inteligente, seguro y eficiente sin importar si es una casa nueva o una vivienda existente.</p>
-    </div>
-    <div class="vm mis">
-      <h3>Misión — Cómo nos comprometemos a lograrlo</h3>
-      <p>Diseñar y fabricar en Colombia soluciones domóticas integrales, de manera accesible y sin costos recurrentes, a través de hardware propio, software independiente y acompañamiento cercano, para las familias de estratos medio-altos, con el fin de que la automatización deje de ser un lujo inalcanzable y se convierta en una realidad cotidiana.</p>
-    </div>
-  </div>
-  <div class="ft"><span>Plataforma de marca</span><span>07 / 12</span></div>
+<!-- ═══ VISIÓN Y MISIÓN ═══ -->
+<section class="s dk" id="s7">
+<div class="bg-p"></div>
+<div class="lbl an"><span class="pip"></span> Visión y misión</div>
+<h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">A dónde vamos y<br><em>cómo <span class="hi2">llegaremos</span></em></h2>
+<div class="g2 an d2">
+<div class="vm v-green"><h3>Visión — El futuro que construimos</h3><p>Transformar la manera en que las familias colombianas viven en sus hogares, a través de tecnología accesible, sostenible y eficiente, con el fin de que cada hogar pueda ser inteligente, seguro y responsable con su consumo energético — sin importar si es una casa nueva o una vivienda existente.</p></div>
+<div class="vm v-ember"><h3>Misión — Cómo lo lograremos</h3><p>Diseñar y fabricar en Colombia soluciones domóticas integrales que operan a bajo voltaje y son compatibles con energías renovables, de manera accesible y sin costos recurrentes, a través de hardware propio, software independiente y acompañamiento cercano, para las familias de estratos medio-altos, con el fin de que la automatización sostenible y eficiente se convierta en una realidad cotidiana.</p></div>
+</div>
+<div class="ft"><span>Plataforma de marca</span><span>07 / 12</span></div>
 </section>
 
-<!-- ═══ S8: CANVAS DIVIDER ═══ -->
-<section class="slide dark" id="s8" style="align-items:center;text-align:center;">
-  <div class="bg-dots"></div>
-  <div class="div-bg-num">02</div>
-  <div class="glow" style="width:400px;height:400px;bottom:25%;left:-100px;background:var(--ember);opacity:.08;"></div>
-  <div class="label an"><span class="pip"></span> Punto 2</div>
-  <h2 class="title an d1">Modelo de negocio<br><em><span class="hi2">Canvas</span></em></h2>
-  <p class="sub an d2" style="text-align:center;">Bloques articulados con la plataforma de marca y centrados en la segmentación de usuario de la Entrega 1.</p>
-  <div class="ft"><span>i-Homotic × GELECT</span><span>Mercadeo Digital y Transmedia</span></div>
+<!-- ═══ DIVIDER: CANVAS ═══ -->
+<section class="s gr" id="s8" style="align-items:center;text-align:center;">
+<div class="bg-p"></div><div class="divn">02</div>
+<div class="lbl an"><span class="pip"></span> Punto 2</div>
+<h2 class="tt an d1" style="font-size:clamp(2.2rem,5vw,3.6rem);">Modelo de negocio<br><em><span class="hi">Canvas</span></em></h2>
+<p class="sub an d2" style="text-align:center;">Bloques articulados con la plataforma de marca y la segmentación de la Entrega 1.</p>
+<div class="ft"><span>i-Homotic × GELECT</span><span>Mercadeo Digital y Transmedia</span></div>
 </section>
 
-<!-- ═══ S9: RELACIÓN CON CLIENTES ═══ -->
-<section class="slide light" id="s9">
-  <div class="label an"><span class="pip"></span> Relación con clientes</div>
-  <h2 class="title an d1" style="font-size:clamp(1.3rem,2.4vw,1.85rem);">Cómo nos comunicamos y<br><em>construimos <span class="hi">confianza</span></em></h2>
-  <p class="sub an d2" style="margin-bottom:18px;">Basado en el comportamiento real: investigan en Google y YouTube, se comunican por WhatsApp, solo avanzan con evidencia verificable.</p>
-  <div class="g3 an d3">
-    <div class="card"><div class="card-icon ic-g">🤝</div><h4>Personalizada y directa</h4><p>Carlos acompaña cada proyecto. Contacto directo vía WhatsApp y llamada — sin chatbots ni intermediarios, porque el usuario valora la respuesta humana.</p></div>
-    <div class="card"><div class="card-icon ic-e">🏠</div><h4>Experiencial y demostrativa</h4><p>Showroom funcional en vivienda real. Los clientes ven, tocan y prueban el sistema antes de comprar. Canal que cierra ventas con clientes cautelosos.</p></div>
-    <div class="card"><div class="card-icon ic-g">📱</div><h4>Digital educativa</h4><p>Instagram (antes/después), YouTube (mini-documentales), sitio web con fichas técnicas y recorridos virtuales. Responden las dudas que frenan la compra.</p></div>
-  </div>
-  <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:4px;" class="an d4">
-    <span class="chip g">📍 WhatsApp = canal #1</span><span class="chip g">📍 Noches y fines de semana</span>
-    <span class="chip g">📍 Voz a voz + validación digital</span><span class="chip e">📍 Sin chatbots</span>
-  </div>
-  <div class="ft"><span>Modelo Canvas</span><span>09 / 12</span></div>
+<!-- ═══ RELACIÓN CON CLIENTES ═══ -->
+<section class="s lt" id="s9">
+<div class="strip sg"></div>
+<div class="lbl an"><span class="pip"></span> Relación con clientes</div>
+<h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">Cómo nos comunicamos y<br><em>construimos <span class="hi">confianza</span></em></h2>
+<p class="sub an d2" style="margin-bottom:18px;">Nuestro usuario (Marcela/Eliana, 30-55 años, estrato 4-5) investiga activamente, combina voz a voz con validación digital, y solo avanza cuando encuentra evidencia clara.</p>
+<div class="g2 an d3">
+<div>
+<h4 style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px;">Tipo de relación</h4>
+<div class="card c-green" style="margin-bottom:12px;"><div class="card-icon">🤝</div><h4>Personalizada y directa</h4><p>WhatsApp (canal #1) y llamada. Carlos acompaña cada proyecto. Sin chatbots — el usuario valora la respuesta humana. Los hijos investigan; los padres financian.</p></div>
+<div class="card c-ember"><div class="card-icon">🏠</div><h4>Experiencial y demostrativa</h4><p>Showroom funcional en vivienda real. Los clientes ven, tocan y prueban. La familia del dueño explica lo sencillo que es. Cierra ventas con clientes cautelosos.</p></div>
+</div>
+<div>
+<h4 style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--ember);margin-bottom:12px;">Canales por segmento</h4>
+<div class="card c-green-wash" style="margin-bottom:12px;"><div class="card-icon">📱</div><h4>Joven (25-40 años)</h4><p>Instagram como primera validación. Reels de proyectos, antes/después, FAQs ("¿sube el recibo?", "¿toca romper paredes?"). Pinterest para inspiración en decoración.</p></div>
+<div class="card c-ember-wash"><div class="card-icon">💻</div><h4>Adulto (40-55 años)</h4><p>Sitio web corporativo = indicador de profesionalismo. Fichas técnicas en PDF. Mini-documentales en YouTube (3-4 min). Google + reseñas antes de contactar.</p></div>
+</div>
+</div>
+<div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:5px;" class="an d4">
+<span class="chip cg">📍 Noches y fines de semana</span><span class="chip ce">📍 Compra gradual: prueban → expanden</span><span class="chip cg">📍 Voz a voz + digital</span>
+</div>
+<div class="ft"><span>Modelo Canvas</span><span>09 / 12</span></div>
 </section>
 
-<!-- ═══ S10: ACTIVIDADES CLAVE ═══ -->
-<section class="slide light" id="s10">
-  <div class="label an"><span class="pip"></span> Actividades clave</div>
-  <h2 class="title an d1" style="font-size:clamp(1.3rem,2.4vw,1.85rem);">Acciones esenciales para<br><em>entregar la <span class="hi2">propuesta</span></em></h2>
-  <div class="g2 an d2">
-    <div class="card"><div class="card-icon ic-g">⚙️</div><h4>Diseño y fabricación propia</h4><p>Circuitos impresos, firmware y software desde cero. Librería propia para asistentes de voz. Esta independencia permite cero costos recurrentes al cliente.</p></div>
-    <div class="card"><div class="card-icon ic-e">🎬</div><h4>Producción de contenido con evidencia</h4><p>Videos de proyectos reales, documentación antes/después, fichas técnicas en PDF. Contenido para Instagram, YouTube y web que responde las dudas de compra.</p></div>
-    <div class="card"><div class="card-icon ic-g">🏗️</div><h4>Instalación, capacitación y soporte</h4><p>Cableado UTP de bajo voltaje. Capacitación al usuario y su familia. Soporte post-venta por WhatsApp. Showroom como herramienta de cierre.</p></div>
-    <div class="card"><div class="card-icon ic-e">🌐</div><h4>Presencia digital y transmedia</h4><p>Sitio web bajo GELECT con recorrido virtual. Instagram para segmento joven. "Mi Casa Paso a Paso" como narrativa transmedia principal.</p></div>
-  </div>
-  <div class="ft"><span>Modelo Canvas</span><span>10 / 12</span></div>
+<!-- ═══ ACTIVIDADES CLAVE ═══ -->
+<section class="s dk" id="s10">
+<div class="strip se"></div>
+<div class="lbl an"><span class="pip"></span> Actividades clave</div>
+<h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">Acciones esenciales para<br><em>entregar la <span class="hi2">propuesta</span></em></h2>
+<div class="g2 an d2">
+<div class="card c-green"><div class="card-icon">⚙️</div><h4>Diseño y fabricación propia</h4><p>Circuitos, firmware y software desde cero. Librerías propias para asistentes de voz. Sistemas a bajo voltaje (12-24V), compatibles con solar. Independencia = cero costos recurrentes + sostenibilidad por diseño.</p></div>
+<div class="card c-ember"><div class="card-icon">🎬</div><h4>Producción de contenido con evidencia</h4><p>Videos de proyectos reales, antes/después, fichas técnicas (PDF), datos de ahorro energético. Para Instagram, YouTube y web — responde las dudas que frenan la decisión.</p></div>
+<div class="card c-green"><div class="card-icon">🏗️</div><h4>Instalación, capacitación y soporte</h4><p>Cableado UTP de bajo voltaje (mínima intervención). Capacitación al usuario y familia. Soporte por WhatsApp. Programación de escenas: cine, lectura, descanso, dormir.</p></div>
+<div class="card c-ember"><div class="card-icon">🌐</div><h4>Presencia digital y transmedia</h4><p>Web bajo GELECT con recorrido virtual del showroom. Instagram para jóvenes. "Mi Casa Paso a Paso": narrativa transmedia con historias reales de hogares colombianos.</p></div>
+</div>
+<div class="ft"><span>Modelo Canvas</span><span>10 / 12</span></div>
 </section>
 
-<!-- ═══ S11: ALIADOS ═══ -->
-<section class="slide light" id="s11">
-  <div class="label an"><span class="pip"></span> Aliados y socios clave</div>
-  <h2 class="title an d1" style="font-size:clamp(1.3rem,2.4vw,1.85rem);">Quiénes necesitamos para<br><em>operar y <span class="hi">escalar</span></em></h2>
-  <div class="g3 an d2" style="gap:12px;">
-    <div class="ali"><div class="ali-ic ic-g">🏗️</div><div><h5>Constructoras e inmobiliarias</h5><p>Canal para obra nueva. I-HOMOTIC agrega valor a desarrollos con domótica integrada desde el diseño.</p></div></div>
-    <div class="ali"><div class="ali-ic ic-e">🎨</div><div><h5>Arquitectos y diseñadores</h5><p>Influenciadores clave. Necesitan material formal (fichas, web) para respaldar la recomendación a sus clientes.</p></div></div>
-    <div class="ali"><div class="ali-ic ic-g">🔌</div><div><h5>Proveedores electrónicos nacionales</h5><p>Componentes para fabricación local. Control de calidad y reducción de costos frente a importaciones.</p></div></div>
-    <div class="ali"><div class="ali-ic ic-e">📡</div><div><h5>Amazon, Google, Apple</h5><p>Plataformas de voz. Librería propia elimina dependencia pero mantiene compatibilidad esperada.</p></div></div>
-    <div class="ali"><div class="ali-ic ic-g">🌐</div><div><h5>Hostinger / WordPress</h5><p>Infraestructura web. Dominio GELECT + CMS para que Carlos administre contenido de forma autónoma.</p></div></div>
-    <div class="ali"><div class="ali-ic ic-e">🇺🇸</div><div><h5>Socio potencial en Miami</h5><p>Internacionalización. Precios competitivos en USD. Requiere presencia digital como condición para avanzar.</p></div></div>
-  </div>
-  <div class="ft"><span>Modelo Canvas</span><span>11 / 12</span></div>
+<!-- ═══ ALIADOS Y SOCIOS ═══ -->
+<section class="s lt" id="s11">
+<div class="strip sg"></div>
+<div class="lbl an"><span class="pip"></span> Aliados y socios clave</div>
+<h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">Quiénes necesitamos para<br><em>operar y <span class="hi">escalar</span></em></h2>
+<p class="sub an d2" style="margin-bottom:16px;">Organizaciones, personas y plataformas que aportan recursos, conocimientos o canales.</p>
+<div class="g3 an d3" style="gap:12px;">
+<div class="ali al-w"><div class="ali-ic" style="background:var(--green-wash);">🏗️</div><div><h5>Constructoras e inmobiliarias</h5><p>Canal para obra nueva. Domótica integrada desde el diseño diferencia proyectos en el mercado.</p></div></div>
+<div class="ali al-w"><div class="ali-ic" style="background:var(--ember-wash);">🎨</div><div><h5>Arquitectos y diseñadores</h5><p>Influenciadores clave. Necesitan fichas técnicas, brochures y web profesional como respaldo.</p></div></div>
+<div class="ali al-w"><div class="ali-ic" style="background:var(--green-wash);">🔌</div><div><h5>Proveedores electrónicos nacionales</h5><p>Componentes para fabricación local. Control de calidad y menor huella de carbono vs. importaciones.</p></div></div>
+<div class="ali al-w"><div class="ali-ic" style="background:var(--ember-wash);">📡</div><div><h5>Amazon, Google, Apple</h5><p>Plataformas de voz. Librería propia elimina dependencia manteniendo compatibilidad esperada.</p></div></div>
+<div class="ali al-w"><div class="ali-ic" style="background:var(--green-wash);">☀️</div><div><h5>Empresas de energía renovable</h5><p>Paquetes combinados domótica + solar/eólica. Refuerza posicionamiento sostenible.</p></div></div>
+<div class="ali al-w"><div class="ali-ic" style="background:var(--ember-wash);">🇺🇸</div><div><h5>Socio potencial en Miami</h5><p>Internacionalización. Precios competitivos en USD. Requiere presencia digital como condición.</p></div></div>
+</div>
+<div class="ft"><span>Modelo Canvas</span><span>11 / 12</span></div>
 </section>
 
-<!-- ═══ S12: CIERRE ═══ -->
-<section class="slide dark" id="s12" style="align-items:center;text-align:center;">
-  <div class="bg-leaf"></div>
-  <div class="glow" style="width:400px;height:400px;top:-80px;right:-60px;background:var(--green-light);opacity:.08;"></div>
-  <div class="label an"><span class="pip"></span> Conexión con la segmentación — Entrega 1</div>
-  <h2 class="title an d1" style="font-size:clamp(1.3rem,2.4vw,1.85rem);">Todo parte del<br><em>usuario <span class="hi">real</span></em></h2>
-  <div class="g4 an d2" style="max-width:900px;">
-    <div class="seg"><h5>Geográfica</h5><p>Colombia — Medellín, Bogotá, áreas metropolitanas. Estrato 4-5 con fibra óptica.</p></div>
-    <div class="seg"><h5>Demográfica</h5><p>30–55 años. Profesionales con educación superior. Familias con hijos adolescentes/universitarios.</p></div>
-    <div class="seg"><h5>Psicográfica</h5><p>Valoran seguridad, transparencia y autonomía. Temen ser engañados. Quieren un hogar que los refleje.</p></div>
-    <div class="seg"><h5>Conductual</h5><p>Google, YouTube, ChatGPT. Instagram. WhatsApp. Compran gradual: prueban y expanden.</p></div>
-  </div>
-  <div style="margin-top:36px;" class="an d3">
-    <div class="cv-logo" style="font-size:clamp(1.8rem,4vw,3rem);"><span class="accent">i</span>-Homotic</div>
-    <div class="cv-slogan">sustainable and efficient</div>
-    <div class="cv-team" style="justify-content:center;"><span>Mateo Ramírez</span><span>Ioav Mizrachi</span><span>Juan Camilo Bolaños</span></div>
-  </div>
-  <div class="ft"><span>i-Homotic × GELECT</span><span>12 / 12</span></div>
+<!-- ═══ CIERRE ═══ -->
+<section class="s dk" id="s12" style="align-items:center;text-align:center;">
+<div class="bg-p"></div>
+<div class="glow" style="width:400px;height:400px;top:-80px;right:-60px;background:var(--green);opacity:.1;"></div>
+<div class="lbl an"><span class="pip"></span> Conexión con la segmentación — Entrega 1</div>
+<h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">Todo parte del<br><em>usuario <span class="hi">real</span></em></h2>
+<div class="g4 an d2" style="max-width:900px;">
+<div class="seg sg-dk"><h5>Geográfica</h5><p>Colombia — Medellín, Bogotá, áreas metropolitanas. Estrato 4-5 con fibra óptica.</p></div>
+<div class="seg sg-dk"><h5>Demográfica</h5><p>30–55 años. Profesionales con educación superior. Familias con hijos que influyen en decisiones tech.</p></div>
+<div class="seg sg-dk"><h5>Psicográfica</h5><p>Valoran seguridad, transparencia y autonomía. Temen ser engañados. Interesados en ahorro energético.</p></div>
+<div class="seg sg-dk"><h5>Conductual</h5><p>Google + YouTube + ChatGPT. Instagram. WhatsApp. Compran gradual: prueban → expanden.</p></div>
+</div>
+<div style="margin-top:36px;" class="an d3">
+<div class="cv-logo" style="font-size:clamp(1.8rem,4vw,3rem);"><span class="ac">i</span><span class="dash">-</span>Homotic</div>
+<div class="cv-sl" style="margin-bottom:14px;">sustainable & efficient</div>
+<div class="cv-team"><span>Mateo Ramírez</span><span>Ioav Mizrachi</span><span>Juan Camilo Bolaños</span></div>
+</div>
+<div class="ft"><span>i-Homotic × GELECT</span><span>12 / 12</span></div>
 </section>
 
 <script>
-const slides = document.querySelectorAll('.slide');
-const nav = document.getElementById('nav');
-slides.forEach((s, i) => {
-  const d = document.createElement('div');
-  d.className = 'dot';
-  d.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
-  nav.appendChild(d);
-});
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const i = [...slides].indexOf(e.target);
-      document.querySelectorAll('.dot').forEach((d, j) => {
-        d.classList.toggle('on', j === i);
-        // Adapt dot colors to slide theme
-        const isLight = e.target.classList.contains('light');
-        d.style.background = d.classList.contains('on') ? 'var(--green-light)' : (isLight ? 'rgba(0,0,0,.08)' : 'rgba(255,255,255,.15)');
-        d.style.borderColor = d.classList.contains('on') ? 'var(--green-light)' : (isLight ? 'rgba(0,0,0,.15)' : 'rgba(255,255,255,.25)');
-      });
-      e.target.querySelectorAll('.an').forEach(el => { el.style.animationPlayState = 'running'; });
-    }
-  });
-}, { threshold: 0.35 });
-slides.forEach(s => {
-  s.querySelectorAll('.an').forEach(el => { el.style.animationPlayState = 'paused'; });
-  obs.observe(s);
-});
-slides[0].querySelectorAll('.an').forEach(el => { el.style.animationPlayState = 'running'; });
+const S=document.querySelectorAll('.s'),N=document.getElementById('nav');
+S.forEach((s,i)=>{const d=document.createElement('div');d.className='dt';d.onclick=()=>s.scrollIntoView({behavior:'smooth'});N.appendChild(d);});
+const O=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=[...S].indexOf(e.target),lt=e.target.classList.contains('lt');
+document.querySelectorAll('.dt').forEach((d,j)=>{d.classList.toggle('on',j===i);d.style.background=d.classList.contains('on')?'var(--green-light)':(lt?'rgba(0,0,0,.08)':'rgba(255,255,255,.1)');d.style.borderColor=d.classList.contains('on')?'var(--green-light)':(lt?'rgba(0,0,0,.12)':'rgba(255,255,255,.18)');});
+e.target.querySelectorAll('.an').forEach(el=>{el.style.animationPlayState='running';});}});},{threshold:.3});
+S.forEach(s=>{s.querySelectorAll('.an').forEach(el=>{el.style.animationPlayState='paused';});O.observe(s);});
+S[0].querySelectorAll('.an').forEach(el=>{el.style.animationPlayState='running';});
 </script>
 </body>
 </html>
