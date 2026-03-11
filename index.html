@@ -301,6 +301,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);
   .stmt-alt p{font-size:12px;}
   .g2{gap:10px;}.g3{gap:9px;}.g4{gap:8px;}
 }
+/* ═══ INFO BUTTON & MODALS ═══ */
+.info-btn{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;backdrop-filter:blur(4px);z-index:2;line-height:1;}
+.info-btn:hover{background:rgba(255,255,255,.2);color:var(--white);transform:scale(1.1);}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:600;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.modal-overlay.show{opacity:1;pointer-events:auto;}
+.modal-box{background:var(--white);color:var(--bark);border-radius:18px;padding:32px;max-width:580px;width:90%;max-height:80vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.modal-box h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:6px;}
+.modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid var(--cloud);background:var(--white);color:var(--fog);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.modal-close:hover{background:var(--green-wash);color:var(--green);}
+.modal-item{padding:12px 0;border-bottom:1px solid #eee;font-size:14px;line-height:1.6;color:var(--stone);}
+.modal-item:last-of-type{border-bottom:none;}
+.modal-item strong{color:var(--green);font-weight:700;}
+
+/* Print: hide modals */
+@media print{.modal-overlay,.info-btn{display:none!important;}}
 </style>
 </head>
 <body>
@@ -375,7 +390,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);
 <div class="fc an d3" style="margin-top:16px;">
 <div class="card c-green-wash"><div class="card-icon">🔍</div><h4>Problema que resuelve</h4><p>Propietarios colombianos enfrentan costos elevados, falta de información clara, desconfianza hacia proveedores sin presencia digital, y soluciones fragmentadas que no integran seguridad, comodidad y eficiencia energética.</p></div>
 <div class="card c-ember-wash"><div class="card-icon">💡</div><h4>Necesidad que satisface</h4><p>Un hogar más seguro, cómodo y eficiente energéticamente, con tecnología que se entienda, funcione y se implemente paso a paso — reduciendo consumo y adaptándose al presupuesto.</p></div>
-<div class="card c-green"><div class="card-icon">⭐</div><h4>Diferencial clave</h4><p>Hardware y software 100% colombiano. Bajo voltaje (12-24V) compatible con solar y eólica. Librería propia para asistentes de voz. Cero costos recurrentes. Sostenible por diseño, eficiente por arquitectura.</p></div>
+<div class="card c-green"><div class="card-icon">⭐</div><h4>Diferencial clave</h4><p>Programación y desarrollo 100% propio (firmware, software y librería para asistentes de voz). Bajo voltaje (12-24V) compatible con solar y eólica. Cero costos recurrentes ni mensualidades. Sostenible por diseño, eficiente por arquitectura.</p></div>
 </div>
 <div class="ft"><span>Plataforma de marca</span><span>02 / 12</span></div>
 </section>
@@ -435,7 +450,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);
 <div class="card c-ember" style="padding:28px;">
 <h4 style="font-size:14px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px;">Atributos (medibles)</h4>
 <div class="bi"><span class="dot dg"></span><strong>Cero costos recurrentes</strong> — sin mensualidades ni suscripciones</div>
-<div class="bi"><span class="dot dg"></span><strong>Fabricación 100% nacional</strong> — desde circuitos hasta software</div>
+<div class="bi"><span class="dot dg"></span><strong>Programación y desarrollo propio</strong> — firmware, software y librería hechos en Colombia</div>
 <div class="bi"><span class="dot dg"></span><strong>Bajo voltaje (12-24V)</strong> — compatible con energía solar y eólica</div>
 <div class="bi"><span class="dot dg"></span><strong>Ahorro energético 15-30%</strong> — reducción comprobable del consumo</div>
 <div class="bi"><span class="dot dg"></span><strong>Librería propia</strong> — para asistentes de voz, sin intermediarios</div>
@@ -457,8 +472,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);
   <div style="background:var(--green);border-radius:18px;padding:26px 28px;">
     <div style="font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px;">🔩 Tangibles</div>
     <div style="display:flex;flex-direction:column;gap:10px;">
-      <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.09);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">⚙️</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Hardware propio — circuitos, controladores y sensores de bajo voltaje</span></div>
-      <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.09);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">💻</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Software y firmware interno, desarrollado 100% en Colombia</span></div>
+      <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.09);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">⚙️</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Ensamblaje y programación local — microcontroladores importados, componentes accesibles en Colombia</span></div>
+      <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.09);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">💻</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Programación propia de dispositivos, firmware y software de control</span></div>
       <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.09);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">🎙️</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Librería propia compatible con Alexa, Google Assistant y Siri</span></div>
       <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.09);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">🏠</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Showroom funcional en vivienda real + portafolio de proyectos</span></div>
       <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.09);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">☀️</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Compatibilidad certificada con paneles solares y eólicos</span></div>
@@ -469,11 +484,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);
   <div style="background:var(--ember);border-radius:18px;padding:26px 28px;">
     <div style="font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px;">✨ Intangibles</div>
     <div style="display:flex;flex-direction:column;gap:10px;">
-      <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">🇨🇴</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Credibilidad técnica — 100% diseñado y fabricado en Colombia</span></div>
+      <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">🇨🇴</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Credibilidad técnica — programación y ensamblaje propio desde Colombia</span></div>
       <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">🔓</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Independencia tecnológica — los equipos funcionan si cerramos</span></div>
       <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">🧠</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Conocimiento profundo en electrónica y eficiencia energética</span></div>
       <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">💬</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Testimonios de familias reales + relación cercana con cada cliente</span></div>
-      <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">🌎</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Potencial internacional — socio activo en Miami, precios en USD</span></div>
+      <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;"><span style="font-size:22px;flex-shrink:0;">🌎</span><span style="font-size:15px;line-height:1.45;color:rgba(255,255,255,.9);">Potencial internacional — contactos activos en Miami y San Francisco, precios competitivos en USD</span></div>
     </div>
   </div>
 
@@ -487,8 +502,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);
 <div class="lbl an"><span class="pip"></span> Visión y misión</div>
 <h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">A dónde vamos y<br><em>cómo <span class="hi2">llegaremos</span></em></h2>
 <div class="g2 an d2">
-<div class="vm v-green"><h3>Visión — El futuro que construimos</h3><p>Transformar la manera en que las familias colombianas viven en sus hogares, a través de tecnología accesible, sostenible y eficiente, con el fin de que cada hogar pueda ser inteligente, seguro y responsable con su consumo energético — sin importar si es una casa nueva o una vivienda existente.</p></div>
-<div class="vm v-ember"><h3>Misión — Cómo lo lograremos</h3><p>Diseñar y fabricar en Colombia soluciones domóticas integrales que operan a bajo voltaje y son compatibles con energías renovables, de manera accesible y sin costos recurrentes, a través de hardware propio, software independiente y acompañamiento cercano, para las familias de estratos medio-altos, con el fin de que la automatización sostenible y eficiente se convierta en una realidad cotidiana.</p></div>
+<div class="vm v-green"><h3>Visión — El futuro que construimos</h3><p>Transformar la manera en que las familias viven en sus hogares, empezando por Colombia y con miras a mercados donde la domótica sigue siendo inaccesible, a través de tecnología sostenible y eficiente, con el fin de que cada hogar pueda ser inteligente, seguro y responsable con su consumo energético — sin importar si es una casa nueva o una vivienda existente.</p></div>
+<div class="vm v-ember"><h3>Misión — Cómo lo lograremos</h3><p>Diseñar y programar desde Colombia soluciones domóticas integrales que operan a bajo voltaje y son compatibles con energías renovables, de manera accesible y sin costos recurrentes, a través de desarrollo propio de software, ensamblaje local y acompañamiento cercano, para familias que quieren modernizar su hogar, con el fin de que la automatización sostenible y eficiente se convierta en una realidad cotidiana.</p></div>
 </div>
 <div class="ft"><span>Plataforma de marca</span><span>07 / 12</span></div>
 </section>
@@ -532,7 +547,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);
 <div class="lbl an"><span class="pip"></span> Actividades clave</div>
 <h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">Acciones esenciales para<br><em>entregar la <span class="hi2">propuesta</span></em></h2>
 <div class="g2 an d2">
-<div class="card c-green"><div class="card-icon">⚙️</div><h4>Diseño y fabricación propia</h4><p>Circuitos, firmware y software desde cero. Librerías propias para asistentes de voz. Sistemas a bajo voltaje (12-24V), compatibles con solar. Independencia = cero costos recurrentes + sostenibilidad por diseño.</p></div>
+<div class="card c-green"><div class="card-icon">⚙️</div><h4>Programación y desarrollo propio</h4><p>Firmware, software y librería de comunicación con asistentes de voz desarrollados internamente. Ensamblaje local con microcontroladores importados y componentes accesibles en Colombia. Sistemas a bajo voltaje (12-24V), compatibles con solar.</p></div>
 <div class="card c-ember"><div class="card-icon">🎬</div><h4>Producción de contenido con evidencia</h4><p>Videos de proyectos reales, antes/después, fichas técnicas (PDF), datos de ahorro energético. Para Instagram, YouTube y web — responde las dudas que frenan la decisión.</p></div>
 <div class="card c-green"><div class="card-icon">🏗️</div><h4>Instalación, capacitación y soporte</h4><p>Cableado UTP de bajo voltaje (mínima intervención). Capacitación al usuario y familia. Soporte por WhatsApp. Programación de escenas: cine, lectura, descanso, dormir.</p></div>
 <div class="card c-ember"><div class="card-icon">🌐</div><h4>Presencia digital y transmedia</h4><p>Web bajo GELECT con recorrido virtual del showroom. Instagram para jóvenes. "Mi Casa Paso a Paso": narrativa transmedia con historias reales de hogares colombianos.</p></div>
@@ -546,51 +561,70 @@ body{font-family:'DM Sans',sans-serif;background:var(--bark);color:var(--white);
 <div class="bg-p"></div>
 <div class="lbl an"><span class="pip"></span> Aliados y socios clave</div>
 <h2 class="tt an d1" style="font-size:clamp(1.5rem,3vw,2.2rem);">Quiénes necesitamos para<br><em>operar y <span class="hi">escalar</span></em></h2>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" class="an d2">
+<p class="sub an d2" style="margin-bottom:16px;">Alianzas estratégicas propuestas para sostener y escalar el modelo de negocio. i-Homotic aún no tiene alianzas formales con constructoras ni firmas — estos son los actores identificados como ideales según el contexto del Valle de Aburrá.</p>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;" class="an d3">
 
-  <div style="background:var(--green);border-radius:16px;padding:22px 20px;">
+  <div style="background:var(--green);border-radius:16px;padding:24px 22px;position:relative;">
+    <button class="info-btn" onclick="openModal('m-const')" aria-label="Ver empresas">ⓘ</button>
     <div style="font-size:34px;margin-bottom:10px;">🏗️</div>
-    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;">Constructoras</div>
-    <div style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);">Canal para obra nueva. Domótica integrada desde el diseño diferencia proyectos en el mercado.</div>
-    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Canal de ventas</span></div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;">Constructoras e inmobiliarias</div>
+    <div style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.75);">Canal principal para obra nueva. Integrar domótica desde el diseño eléctrico diferencia proyectos en un mercado con 518 ofertas y 69 constructoras (Expoinmobiliaria 2026). Carlos aún no tiene alianzas formales, pero el interés existe.</div>
+    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Canal de ventas · Alianza propuesta</span></div>
   </div>
 
-  <div style="background:var(--ember);border-radius:16px;padding:22px 20px;">
+  <div style="background:var(--ember);border-radius:16px;padding:24px 22px;position:relative;">
+    <button class="info-btn" onclick="openModal('m-arq')" aria-label="Ver empresas">ⓘ</button>
     <div style="font-size:34px;margin-bottom:10px;">🎨</div>
-    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;">Arquitectos y diseñadores</div>
-    <div style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);">Influenciadores clave. Necesitan fichas técnicas, brochures y web profesional como respaldo.</div>
-    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Prescriptores</span></div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;">Firmas de arquitectura y diseño</div>
+    <div style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.75);">Prescriptores clave: recomiendan soluciones tecnológicas a sus clientes. Necesitan material formal (fichas técnicas, web profesional, brochures) para respaldar la recomendación ante el comprador final.</div>
+    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Prescriptores · Alianza propuesta</span></div>
   </div>
 
-  <div style="background:var(--green);border-radius:16px;padding:22px 20px;">
-    <div style="font-size:34px;margin-bottom:10px;">🔌</div>
-    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;">Proveedores electrónicos</div>
-    <div style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);">Componentes para fabricación local. Control de calidad y menor huella de carbono vs. importaciones.</div>
-    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Cadena de producción</span></div>
-  </div>
-
-  <div style="background:var(--ember);border-radius:16px;padding:22px 20px;">
+  <div style="background:var(--green);border-radius:16px;padding:24px 22px;">
     <div style="font-size:34px;margin-bottom:10px;">📡</div>
     <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;">Amazon · Google · Apple</div>
-    <div style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);">Plataformas de voz. Librería propia elimina dependencia manteniendo la compatibilidad esperada.</div>
-    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Integración de voz</span></div>
+    <div style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.75);">Plataformas de asistentes de voz (Alexa, Google Assistant, Siri). i-Homotic desarrolló su propia librería para comunicarse con estos servicios sin depender de SDKs de pago ni intermediarios.</div>
+    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Integración técnica · Activo</span></div>
   </div>
 
-  <div style="background:var(--green);border-radius:16px;padding:22px 20px;">
-    <div style="font-size:34px;margin-bottom:10px;">☀️</div>
-    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;">Energía renovable</div>
-    <div style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);">Paquetes combinados domótica + solar/eólica. Refuerza el posicionamiento sostenible.</div>
-    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Ecosistema verde</span></div>
-  </div>
-
-  <div style="background:var(--ember);border-radius:16px;padding:22px 20px;">
+  <div style="background:var(--ember);border-radius:16px;padding:24px 22px;">
     <div style="font-size:34px;margin-bottom:10px;">🌎</div>
-    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;">Socio en Miami</div>
-    <div style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);">Internacionalización. Precios competitivos en USD. Requiere presencia digital como condición.</div>
-    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Expansión internacional</span></div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;">Contactos internacionales</div>
+    <div style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.75);">Contacto activo en Miami (constructora en Orlando) y un interesado en San Francisco. La ventaja competitiva de precio es real: un switch de i-Homotic costaría ~25 USD vs. 87 USD en el mercado estadounidense. Requiere presencia digital para avanzar.</div>
+    <div style="margin-top:10px;"><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:6px;color:rgba(255,255,255,.6);">Expansión · En exploración</span></div>
   </div>
 
 </div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="m-const" onclick="closeModal('m-const')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('m-const')">&times;</button>
+    <h3>🏗️ Constructoras propuestas como aliados</h3>
+    <p style="margin-bottom:14px;color:var(--fog);font-size:14px;">Constructoras activas en el Valle de Aburrá con proyectos en estratos 4-5-6, identificadas como alianzas estratégicas viables.</p>
+    <div class="modal-item"><strong>Bienes & Bienes</strong> — Proyectos en Sabaneta, Envigado, El Poblado. Proyecto Ecoh con certificación EDGE (sostenibilidad). Cuenta con área de desarrollo TI.</div>
+    <div class="modal-item"><strong>Arquitectura y Concreto</strong> — Más de 500 proyectos, 40 mil viviendas. Calificación A+ Fitch Ratings. Alianza con Terso para energía solar. Certificación en construcción sostenible.</div>
+    <div class="modal-item"><strong>Amarilo</strong> — Presencia nacional, proyecto Ciudad del Río en Medellín. Certificaciones EDGE, LEED Platinum y Casa Colombia. 5 ejes de sostenibilidad formalizados.</div>
+    <div class="modal-item"><strong>Estructurar</strong> — Segmento premium: El Poblado, San Lucas, Sabaneta. Proyectos desde $233M hasta $1.945M COP.</div>
+    <div class="modal-item"><strong>Constructora Capital</strong> — Más de 30 años. Proyectos en Ciudad del Río, El Poblado, Robledo. Vivienda VIS y No VIS.</div>
+    <p style="margin-top:14px;font-size:13px;color:var(--fog);font-style:italic;">Fuente: Expoinmobiliaria 2026 (Camacol Antioquia), sitios web corporativos y LinkedIn.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-arq" onclick="closeModal('m-arq')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('m-arq')">&times;</button>
+    <h3>🎨 Firmas de arquitectura propuestas</h3>
+    <p style="margin-bottom:14px;color:var(--fog);font-size:14px;">Firmas del Valle de Aburrá que trabajan en vivienda residencial de alta gama y podrían prescribir domótica a sus clientes.</p>
+    <div class="modal-item"><strong>La Provenza Group</strong> — Vivienda alta gama en Medellín. Enfoque en naturaleza, materiales nobles y jardines verticales.</div>
+    <div class="modal-item"><strong>Alex Toro Arquitectos</strong> — 23 años de trayectoria, más de 150 proyectos multifamiliares en Medellín y área metropolitana.</div>
+    <div class="modal-item"><strong>Emme Arquitectura</strong> — Firma joven. Diseño de interiores residencial y comercial. Perfil abierto a integrar tecnología.</div>
+    <div class="modal-item"><strong>Peláez Arquitectura</strong> — Proyectos residenciales premium (Ele 16). Apartamentos generosos con enfoque en calidad de vida.</div>
+    <div class="modal-item"><strong>Llano Arquitectos</strong> — Vivienda unifamiliar de alta gama en El Retiro y La Estrella. Clientes con alto poder adquisitivo.</div>
+    <p style="margin-top:14px;font-size:13px;color:var(--fog);font-style:italic;">Fuente: Revista Axxis, sitios web corporativos y portafolios en LinkedIn.</p>
+  </div>
+</div>
+
 <div class="ft"><span>Modelo Canvas</span><span>11 / 12</span></div>
 </section>
 
@@ -650,6 +684,10 @@ document.getElementById('exportBtn').addEventListener('click', function(){
   });
   window.print();
 });
+/* Modal functions */
+function openModal(id){document.getElementById(id).classList.add('show');}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.show').forEach(m=>m.classList.remove('show'));});
 </script>
 </body>
 </html>
